@@ -1,0 +1,34 @@
+using System;
+
+class Program
+{
+    static int ReadNumber(int start, int end)
+    {
+        Console.Write($"Enter an integer between {start} and {end}: ");
+        string input = Console.ReadLine();
+        if (int.TryParse(input, out int number) && number >= start && number <= end)
+        {
+            return number;
+        }
+        else
+        {
+            throw new ArgumentException("Invalid number or out of range.");
+        }
+    }
+
+    static void Main(string[] args)
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            try
+            {
+                int number = ReadNumber(1, 100); // Change the range as needed.
+                Console.WriteLine($"Valid number: {number}");
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+            }
+        }
+    }
+}
